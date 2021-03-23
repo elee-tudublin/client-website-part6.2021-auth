@@ -28,6 +28,7 @@ document.getElementById('login').addEventListener('click', function (event) {
     // auth0WebAuth is defined in auth0-variables.js
     auth0WebAuth.authorize({ returnTo: CLIENT_URL });
     console.log('Logged in');
+
 }, false);
 
 
@@ -71,10 +72,11 @@ function checkUser() {
 
 // When page is loaded
 window.onload = (event) => {
-    // execute this code
+    // Check for valid Auth0 token
     auth0WebAuth.parseHash(function (err, result) {
         if (result) {
             saveAuthResult(result);
+            toggleLinks(true);
         }
     });
     // check login status after page loads

@@ -4,15 +4,25 @@
 import * as productData from '../dataAccess/productData.js';
 import { Product } from '../models/product.js';
 
-// check user permissions
-const showUpdate = checkAuth(UPDATE_PRODUCT);
-const showDelete = checkAuth(DELETE_PRODUCT);
-const showAdd = checkAuth(CREATE_PRODUCT);
+
 
 // 1. Parse JSON
 // 2. Create product rows
 // 3. Display in web page
 let displayProducts = ((products) => {
+
+    // check user permissions
+    const showUpdate = checkAuth(UPDATE_PRODUCT);
+    const showDelete = checkAuth(DELETE_PRODUCT);
+    const showAdd = checkAuth(CREATE_PRODUCT);
+
+    // Show button if user has permission to add products
+    if (showAdd) {
+        document.getElementById('AddProductButton').style.display = 'block';
+    } else {
+        document.getElementById('AddProductButton').style.display = 'none';
+    }
+
     // Use the Array map method to iterate through the array of products (in json format)
 
     const rows = products.map(product => {
@@ -214,18 +224,9 @@ let loadProducts = async () => {
     }
 
     // Add Event Listeners to the Add Product  and form save buttons
-    const addButton = document.getElementById('AddProductButton');
-    addButton.addEventListener('click', () => {
+     document.getElementById('AddProductButton').addEventListener('click', () => {
         productFormSetup('Add Product');
     });
-
-    // Show button if user has permission to add products
-    if (showAdd) {
-        addButton.style.display = 'block';
-    } else {
-        addButton.style.display = 'none';
-    }
-
 
     document.getElementById('saveProduct').addEventListener('click', addOrUpdateProduct);
 
@@ -233,7 +234,7 @@ let loadProducts = async () => {
 
 loadProducts();
 
-/*
+
 export {
     loadProducts,
     updateProductsView,
@@ -242,4 +243,3 @@ export {
     productFormSetup,
     deleteProduct,
 }
-*/

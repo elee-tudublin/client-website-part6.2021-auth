@@ -20,10 +20,10 @@ function checkStatus() {
   // If logged in
   if (accessToken && !isExpired) {
     return true;
+  } else {
+    return false;
   }
-  return false;
 }
-
 
 // Get access token (from session storage, etc.)
 function getAccessToken() {
@@ -35,7 +35,7 @@ function saveAuthResult(result) {
   sessionStorage.setItem('accessToken', result.accessToken);
   sessionStorage.setItem('idToken', result.idToken);
   sessionStorage.setItem('expirationDate', Date.now() + Number.parseInt(result.expiresIn) * 1000);
-  // Refresh the page
+  // check login status
   checkStatus();
 }
 
@@ -61,12 +61,11 @@ function checkSession() {
 // return true or false
 function checkAuth(permission) {
   // read the JWT
-  const jwt = getAccessToken();
+  const jwt = sessionStorage.getItem('accessToken');
   // check permissions (if a jwt was returned)
   if (jwt == null) {
     return false;
   }
   const decoded = jwt_decode(jwt);
-  return decoded.permissions.includes(permission);  
+  return decoded.permissions.includes(permission);
 } // End function
-

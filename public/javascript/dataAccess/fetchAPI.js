@@ -12,7 +12,7 @@ let getHeaders = () => {
   return new Headers({
     "Accept": "application/json",
     "Content-Type": "application/json",
-    //"Authorization": "Bearer " + getAccessToken()
+    "Authorization": "Bearer " + sessionStorage.getItem('accessToken')
   });
 } // end function
 
