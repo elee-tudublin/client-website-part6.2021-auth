@@ -1,13 +1,12 @@
 // Declare consts for Auth0 details required in this app
 
-// Client url
-const CLIENT_URL = "http://localhost:3000";
-
-// api permissions
-const CREATE_PRODUCT = "create:products";
-const READ_PRODUCT = "read:products";
-const UPDATE_PRODUCT = "update:products";
-const DELETE_PRODUCT = "delete:products";
+// api roles
+const API_ROLES = {
+  CREATE_PRODUCT : 'create:products',
+  READ_PRODUCT : 'read:products',
+  UPDATE_PRODUCT : 'update:products',
+  DELETE_PRODUCT : 'delete:products'
+};
 
 // The Auth0 id for this app
 const AUTH0_CLIENT_ID = '5n65Amb64bEMQcFYbDk95bhgmjvO5Ahm';
@@ -35,3 +34,9 @@ const auth0Authentication = new auth0.Authentication(auth0WebAuth, {
   domain: AUTH0_DOMAIN,
   clientID: AUTH0_CLIENT_ID
 });
+
+export {
+  API_ROLES,
+  auth0WebAuth,
+  auth0Authentication
+}

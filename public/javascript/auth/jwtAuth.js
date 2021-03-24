@@ -1,3 +1,5 @@
+
+
 // check login status
 function checkStatus() {
   // Get access tokem from browser sessionStorage
@@ -56,6 +58,14 @@ function checkSession() {
   });
 }
 
+const parseJwt = (token) => {
+  try {
+    return JSON.parse(atob(token.split('.')[1]));
+  } catch (e) {
+    return null;
+  }
+};
+
 //
 // use jwt-decode to check if jwt contains a permission for the user
 // return true or false
@@ -66,6 +76,16 @@ function checkAuth(permission) {
   if (jwt == null) {
     return false;
   }
-  const decoded = jwt_decode(jwt);
+  const decoded = parseJwt(jwt);
   return decoded.permissions.includes(permission);
 } // End function
+
+
+
+export {
+  checkStatus,
+  getAccessToken,
+  saveAuthResult,
+  checkSession,
+  checkAuth
+};

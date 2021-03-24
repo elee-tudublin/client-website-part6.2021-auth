@@ -1,8 +1,5 @@
 // Declare consts for Auth0 details reqired in this app
 
-// Client url
-const CLIENT_URL = "http://localhost:3000";
-
 // The Auth0 id for this app
 const AUTH0_CLIENT_ID = 'my client id - see Auth0 settings for this app';
 
@@ -29,3 +26,10 @@ const auth0Authentication = new auth0.Authentication(auth0WebAuth, {
   domain: AUTH0_DOMAIN,
   clientID: AUTH0_CLIENT_ID
 });
+
+
+export {
+  API_ROLES,
+  auth0WebAuth,
+  auth0Authentication
+}
