@@ -1,5 +1,4 @@
 
-
 // check login status
 function checkStatus() {
   // Get access tokem from browser sessionStorage

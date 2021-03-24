@@ -2,7 +2,7 @@
 // Assign event listeners to logi, logout, and profile links
 
 import { auth0WebAuth, auth0Authentication } from '../../auth/auth0-variables.js';
-import * as jwtAuth from '../../auth/jwtAuth.js';
+import { getAccessToken, checkSession, saveAuthResult, checkStatus } from '../../auth/jwtAuth.js';
 
 // Show hide menu links based on logged in state
 function toggleLinks(loggedIn) {
@@ -49,7 +49,7 @@ document.getElementById('logout').addEventListener('click', function (event) {
 // get user profile from Auth0 
 document.getElementById('get-profile').addEventListener('click', async function (event) {
     event.preventDefault();
-    auth0Authentication.userInfo(jwtAuth.getAccessToken(), (err, usrInfo) => {
+    auth0Authentication.userInfo(getAccessToken(), (err, usrInfo) => {
         if (err) {
             // handle error
             console.error('Failed to get userInfo');
@@ -65,7 +65,7 @@ document.getElementById('get-profile').addEventListener('click', async function 
 // check jwt validity every 15 minutes
 // refresh token if required
 function checkUser() {
-    toggleLinks(jwtAuth.checkSession());
+    toggleLinks(checkSession());
     setTimeout(checkUser, 900000);
 } // End function
 
@@ -74,13 +74,13 @@ window.onload = (event) => {
     // Check for valid Auth0 token
     auth0WebAuth.parseHash(function (err, result) {
         if (result) {
-            jwtAuth.saveAuthResult(result);
+            saveAuthResult(result);
             toggleLinks(true);
         }
     });
     // check login status after page loads
     // show and hide login/ logout links
-    toggleLinks(jwtAuth.checkStatus());
+    toggleLinks(checkStatus());
 };
 
 // Not yet required

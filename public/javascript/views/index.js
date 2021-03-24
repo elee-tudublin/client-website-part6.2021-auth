@@ -4,7 +4,7 @@
 import * as productData from '../dataAccess/productData.js';
 import { Product } from '../models/product.js';
 import { API_ROLES } from '../auth/auth0-variables.js';
-import * as jwtAuth from '../auth/jwtAuth.js';
+import { checkAuth } from '../auth/jwtAuth.js';
 
 
 
@@ -14,9 +14,9 @@ import * as jwtAuth from '../auth/jwtAuth.js';
 let displayProducts = ((products) => {
 
     // check user permissions
-    const showUpdate = jwtAuth.checkAuth(API_ROLES.UPDATE_PRODUCT);
-    const showDelete = jwtAuth.checkAuth(API_ROLES.DELETE_PRODUCT);
-    const showAdd = jwtAuth.checkAuth(API_ROLES.CREATE_PRODUCT);
+    const showUpdate = checkAuth(API_ROLES.UPDATE_PRODUCT);
+    const showDelete = checkAuth(API_ROLES.DELETE_PRODUCT);
+    const showAdd = checkAuth(API_ROLES.CREATE_PRODUCT);
 
     // Show button if user has permission to add products
     if (showAdd) {
