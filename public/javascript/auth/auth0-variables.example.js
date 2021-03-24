@@ -1,5 +1,13 @@
 // Declare consts for Auth0 details reqired in this app
 
+// api roles
+const API_ROLES = {
+  CREATE_PRODUCT : 'create:products',
+  READ_PRODUCT : 'read:products',
+  UPDATE_PRODUCT : 'update:products',
+  DELETE_PRODUCT : 'delete:products'
+};
+
 // The Auth0 id for this app
 const AUTH0_CLIENT_ID = 'my client id - see Auth0 settings for this app';
 
