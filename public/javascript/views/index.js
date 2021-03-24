@@ -1,12 +1,12 @@
 //
 // Function used to update index.html
 //
+
+// Import dependencies
 import * as productData from '../dataAccess/productData.js';
 import { Product } from '../models/product.js';
 import { API_ROLES } from '../auth/auth0-variables.js';
 import { checkAuth } from '../auth/jwtAuth.js';
-
-
 
 // 1. Parse JSON
 // 2. Create product rows
@@ -14,6 +14,7 @@ import { checkAuth } from '../auth/jwtAuth.js';
 let displayProducts = ((products) => {
 
     // check user permissions
+    // Does the token contain these roles?
     const showUpdate = checkAuth(API_ROLES.UPDATE_PRODUCT);
     const showDelete = checkAuth(API_ROLES.DELETE_PRODUCT);
     const showAdd = checkAuth(API_ROLES.CREATE_PRODUCT);
@@ -236,7 +237,7 @@ let loadProducts = async () => {
 
 loadProducts();
 
-
+/*
 export {
     loadProducts,
     updateProductsView,
@@ -245,3 +246,4 @@ export {
     productFormSetup,
     deleteProduct,
 }
+*/

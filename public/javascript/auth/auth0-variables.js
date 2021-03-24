@@ -35,6 +35,7 @@ const auth0Authentication = new auth0.Authentication(auth0WebAuth, {
   clientID: AUTH0_CLIENT_ID
 });
 
+// Export consts
 export {
   API_ROLES,
   auth0WebAuth,

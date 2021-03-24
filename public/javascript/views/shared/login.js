@@ -1,6 +1,7 @@
 // Get User log in status and update Login links.
 // Assign event listeners to logi, logout, and profile links
 
+// Import dependencies required to manage user login, etc.
 import { auth0WebAuth, auth0Authentication } from '../../auth/auth0-variables.js';
 import { getAccessToken, checkSession, saveAuthResult, checkStatus } from '../../auth/jwtAuth.js';
 
@@ -23,7 +24,7 @@ function toggleLinks(loggedIn) {
 // Add Event Handlers for links
 //
 // Login event handler
-// Call Auth0 to handle login (then return here)
+// Call Auth0 to handle login (then return to the callback url – http://localhost:3000)
 document.getElementById('login').addEventListener('click', function (event) {
     // Prevent form submission (if used in a form)
     event.preventDefault();
@@ -36,7 +37,7 @@ document.getElementById('login').addEventListener('click', function (event) {
 
 //
 // Logout
-// Call Auth0 to handle logout (then return here)
+// Call Auth0 to handle logout (then return to the callback url – http://localhost:3000)
 document.getElementById('logout').addEventListener('click', function (event) {
     event.preventDefault();
     // remove tokens from session storage

@@ -57,6 +57,7 @@ function checkSession() {
   });
 }
 
+//
 // docode a JWT
 const parseJwt = (token) => {
   try {
@@ -80,8 +81,7 @@ function checkAuth(permission) {
   return decoded.permissions.includes(permission);
 } // End function
 
-
-
+// Export functions
 export {
   checkStatus,
   getAccessToken,
