@@ -21,6 +21,7 @@ function checkStatus() {
   // If logged in
   if (accessToken && !isExpired) {
     return true;
+    // reload data??
   } else {
     return false;
   }
